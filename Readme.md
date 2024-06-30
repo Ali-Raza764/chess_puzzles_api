@@ -18,7 +18,7 @@ Retrieve a list of puzzles with optional filters and pagination.
 
 #### Example Request:
 ```plaintext
-GET /puzzles?start=0&limit=10&min_rating=1000&max_rating=2000&themes=adventure,logic
+https://chess-puzzles-api.vercel.app/puzzles?start=0&limit=10&min_rating=1000&max_rating=2000&themes=adventure,logic
 ```
 
 ### GET /puzzle
@@ -31,7 +31,7 @@ Retrieve a puzzle by its ID.
 
 #### Example Request:
 ```plaintext
-GET /puzzle?puzzle_id=12345
+https://chess-puzzles-api.vercel.app/puzzle?puzzle_id=12345
 ```
 
 ## Getting Started
@@ -47,7 +47,7 @@ GET /puzzle?puzzle_id=12345
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git
+   https://github.com/Ali-Raza764/chess_puzzles_api
    cd YOUR_REPOSITORY_NAME
    ```
 
@@ -71,7 +71,7 @@ GET /puzzle?puzzle_id=12345
    flask run
    ```
 
-2. Open your browser and go to `http://127.0.0.1:8000` to view the API documentation.
+2. Open your browser and go to `http://127.0.0.1:5000` to view the API documentation.
 
 ## Deployment
 
