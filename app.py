@@ -9,7 +9,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'SimpleCache', 'CACHE_DEFAULT_TIMEOUT':
 
 # Load the CSV file with error handling for malformed lines
 try:
-    df = pd.read_csv('puzzles_1000.csv', on_bad_lines='skip')
+    df = pd.read_csv('puzzles_10000.csv', on_bad_lines='skip')
     df.set_index('PuzzleId', inplace=True)
 except pd.errors.ParserError as e:
     print(f"Error reading the CSV file: {e}")
