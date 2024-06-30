@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1em 0;
+        text-align: center;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2em;
+      }
+      h2 {
+        color: #333;
+      }
+      .endpoint {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 1em;
+        margin-bottom: 1em;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      pre {
+        background-color: #272822;
+        color: #f8f8f2;
+        padding: 1em;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      code {
+        display: block;
+        white-space: pre-wrap;
+      }
+      .copy-button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 0.5em 1em;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 1em;
+      }
+      .themes-section {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 1em;
+        margin-bottom: 1em;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>API Documentation</h1>
+    </header>
+    <div class="container">
+      <h2>Endpoints</h2>
+      <div class="endpoint">
+        <h3>GET /puzzles</h3>
+        <p>Retrieve a list of puzzles with optional filters and pagination.</p>
+        <h4>Query Parameters:</h4>
+        <ul>
+          <li>
+            <strong>start</strong> (integer, default: 0) - The starting index
+            for pagination.
+          </li>
+          <li>
+            <strong>limit</strong> (integer, default: 10) - The number of
+            puzzles to return.
+          </li>
+          <li>
+            <strong>min_rating</strong> (integer, default: 0) - The minimum
+            rating to filter puzzles.
+          </li>
+          <li>
+            <strong>max_rating</strong> (integer, default: 3000) - The maximum
+            rating to filter puzzles.
+          </li>
+          <li>
+            <strong>themes</strong> (string) - A comma-separated list of themes
+            to filter puzzles.
+          </li>
+        </ul>
+        <h4>Example Request:</h4>
+        <pre><code id="getPuzzlesExample">http://localhost:5000/puzzles?start=0&limit=10&min_rating=1000&max_rating=2000&themes=middlegame,endgame</code></pre>
+        <button
+          class="copy-button"
+          onclick="copyToClipboard('getPuzzlesExample')"
+        >
+          Copy Example 📋
+        </button>
+      </div>
+      <div class="endpoint">
+        <h3>GET /puzzle</h3>
+        <p>Retrieve a puzzle by its ID.</p>
+        <h4>Query Parameters:</h4>
+        <ul>
+          <li>
+            <strong>puzzle_id</strong> (string) - The ID of the puzzle to
+            retrieve.
+          </li>
+        </ul>
+        <h4>Example Request:</h4>
+        <pre><code id="getPuzzleExample">http://localhost:5000/puzzle?puzzle_id=12345</code></pre>
+        <button
+          class="copy-button"
+          onclick="copyToClipboard('getPuzzleExample')"
+        >
+          Copy Example 📋
+        </button>
+      </div>
+      <div class="themes-section">
+        <h3>Puzzles Endpoints</h3>
+        <ul>
+          <li>opening</li>
+          <li>middlegame</li>
+          <li>endgame</li>
+          <li>mate</li>
+          <li>mateIn2</li>
+          <li>mateIn3</li>
+          <li>fork</li>
+          <li>sacrifice</li>
+          <li>queensideAttack</li>
+          <li>kingsideAttack</li>
+          <li>advantage</li>
+          <li>short</li>
+          <li>long</li>
+          <li>veryLong</li>
+          <li>discoveredAttack</li>
+          <li>crushing</li>
+          <li>deflection</li>
+          <li>pin</li>
+          <li>skewer</li>
+          <li>oneMove</li>
+          <li>defensiveMove</li>
+        </ul>
+        <h4>Example Request:</h4>
+        <pre><code id="getThemeExample">http://localhost:5000/puzzles?themes=middlegame,endgame,mate,fork</code></pre>
+        <button
+          class="copy-button"
+          onclick="copyToClipboard('getThemeExample')"
+        >
+          Copy Example 📋
+        </button>
+      </div>
+    </div>
+    <script>
+      function copyToClipboard(elementId) {
+        var copyText = document.getElementById(elementId).textContent;
+        var textarea = document.createElement("textarea");
+        textarea.textContent = copyText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+    </script>
+  </body>
+</html>

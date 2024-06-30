@@ -9,7 +9,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'SimpleCache', 'CACHE_DEFAULT_TIMEOUT':
 
 # Load the CSV file with error handling for malformed lines
 try:
-    df = pd.read_csv('puzzles.csv', on_bad_lines='skip')
+    df = pd.read_csv('puzzles_1000.csv', on_bad_lines='skip')
     df.set_index('PuzzleId', inplace=True)
 except pd.errors.ParserError as e:
     print(f"Error reading the CSV file: {e}")
@@ -39,8 +39,8 @@ def get_puzzles():
         paginated_df = filtered_df.iloc[start:start+limit]
         
         # Convert to dictionary and return as JSON
-        puzzles = paginated_df.reset_index().to_dict(orient='records')
-        return jsonify(puzzles)
+        puzzles = paginated_df.reset_index().to_json(orient='records')
+        return (puzzles)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -54,8 +54,8 @@ def get_puzzle():
         if puzzle_id not in df.index:
             return jsonify({"error": "Puzzle not found"}), 404
         
-        puzzle = df.loc[puzzle_id].to_dict()
-        return jsonify(puzzle)
+        puzzle = df.loc[puzzle_id].to_json()
+        return (puzzle)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
