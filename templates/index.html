@@ -22,7 +22,7 @@
         margin: 0 auto;
         padding: 2em;
       }
-      h2 {
+      h1, h2, h3, h4 {
         color: #333;
       }
       .endpoint {
@@ -52,6 +52,10 @@
         border-radius: 4px;
         cursor: pointer;
         margin-top: 1em;
+        transition: background-color 0.3s;
+      }
+      .copy-button:hover {
+        background-color: #555;
       }
       .themes-section {
         background-color: #fff;
@@ -60,6 +64,40 @@
         padding: 1em;
         margin-bottom: 1em;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .copy-notification {
+        display: none;
+        background-color: #4CAF50;
+        color: white;
+        padding: 0.5em;
+        border-radius: 4px;
+        margin-top: 1em;
+      }
+      .copy-notification.show {
+        display: block;
+        animation: fadeInOut 2s;
+      }
+      @keyframes fadeInOut {
+        0% { opacity: 0; }
+        50% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      .repo-link {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 1em;
+        margin-top: 1em;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .repo-link a {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .repo-link a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
@@ -74,57 +112,31 @@
         <p>Retrieve a list of puzzles with optional filters and pagination.</p>
         <h4>Query Parameters:</h4>
         <ul>
-          <li>
-            <strong>start</strong> (integer, default: 0) - The starting index
-            for pagination.
-          </li>
-          <li>
-            <strong>limit</strong> (integer, default: 10) - The number of
-            puzzles to return.
-          </li>
-          <li>
-            <strong>min_rating</strong> (integer, default: 0) - The minimum
-            rating to filter puzzles.
-          </li>
-          <li>
-            <strong>max_rating</strong> (integer, default: 3000) - The maximum
-            rating to filter puzzles.
-          </li>
-          <li>
-            <strong>themes</strong> (string) - A comma-separated list of themes
-            to filter puzzles.
-          </li>
+          <li><strong>start</strong> (integer, default: 0) - The starting index for pagination.</li>
+          <li><strong>limit</strong> (integer, default: 10) - The number of puzzles to return.</li>
+          <li><strong>min_rating</strong> (integer, default: 0) - The minimum rating to filter puzzles.</li>
+          <li><strong>max_rating</strong> (integer, default: 3000) - The maximum rating to filter puzzles.</li>
+          <li><strong>themes</strong> (string) - A comma-separated list of themes to filter puzzles.</li>
         </ul>
         <h4>Example Request:</h4>
         <pre><code id="getPuzzlesExample">https://chess-puzzles-api.vercel.app/puzzles?start=0&limit=10&min_rating=1000&max_rating=2000&themes=middlegame,endgame</code></pre>
-        <button
-          class="copy-button"
-          onclick="copyToClipboard('getPuzzlesExample')"
-        >
-          Copy Example 📋
-        </button>
+        <button class="copy-button" onclick="copyToClipboard('getPuzzlesExample')">Copy Example 📋</button>
+        <div id="notification" class="copy-notification">Copied to clipboard!</div>
       </div>
       <div class="endpoint">
         <h3>GET /puzzle</h3>
         <p>Retrieve a puzzle by its ID.</p>
         <h4>Query Parameters:</h4>
         <ul>
-          <li>
-            <strong>puzzle_id</strong> (string) - The ID of the puzzle to
-            retrieve.
-          </li>
+          <li><strong>puzzle_id</strong> (string) - The ID of the puzzle to retrieve.</li>
         </ul>
         <h4>Example Request:</h4>
         <pre><code id="getPuzzleExample">https://chess-puzzles-api.vercel.app/puzzle?puzzle_id=12345</code></pre>
-        <button
-          class="copy-button"
-          onclick="copyToClipboard('getPuzzleExample')"
-        >
-          Copy Example 📋
-        </button>
+        <button class="copy-button" onclick="copyToClipboard('getPuzzleExample')">Copy Example 📋</button>
+        <div id="notification" class="copy-notification">Copied to clipboard!</div>
       </div>
       <div class="themes-section">
-        <h3>Puzzles Endpoints</h3>
+        <h3>Available Themes</h3>
         <ul>
           <li>opening</li>
           <li>middlegame</li>
@@ -150,12 +162,12 @@
         </ul>
         <h4>Example Request:</h4>
         <pre><code id="getThemeExample">https://chess-puzzles-api.vercel.app/puzzles?themes=middlegame,endgame,mate,fork</code></pre>
-        <button
-          class="copy-button"
-          onclick="copyToClipboard('getThemeExample')"
-        >
-          Copy Example 📋
-        </button>
+        <button class="copy-button" onclick="copyToClipboard('getThemeExample')">Copy Example 📋</button>
+        <div id="notification" class="copy-notification">Copied to clipboard!</div>
+      </div>
+      <div class="repo-link">
+        <h3>GitHub Repository</h3>
+        <p>Find the source code and more information on our <a href="https://github.com/Ali-Raza764/chess_puzzles_api" target="_blank">GitHub repository</a>.</p>
       </div>
     </div>
     <script>
@@ -167,6 +179,15 @@
         textarea.select();
         document.execCommand("copy");
         document.body.removeChild(textarea);
+        showNotification();
+      }
+
+      function showNotification() {
+        var notification = document.getElementById('notification');
+        notification.classList.add('show');
+        setTimeout(function() {
+          notification.classList.remove('show');
+        }, 2000);
       }
     </script>
   </body>
